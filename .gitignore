@@ -6,3 +6,4 @@ agent.log
 positions.json
 liquidation_watchlist.json
 liquidation_last_block.json
+wallet.enc
