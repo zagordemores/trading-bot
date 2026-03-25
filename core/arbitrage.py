@@ -202,7 +202,6 @@ class ArbExecutor:
             logger.info(f"[DRY-RUN] Flash arb simulato - nessuna TX.")
             if TELEGRAM_OK:
                 if opp.estimated_profit > 0: send_message("🔵 <b>ARB DRY-RUN</b> " + opp.pair + "\nSpread: " + str(round(opp.spread_pct,2)) + "% | Profit stimato: " + str(round(opp.estimated_profit,4)) + " USDC")
-                except Exception: pass
             return "dry_run"
 
         try:
@@ -235,8 +234,7 @@ class ArbExecutor:
             if receipt["status"] == 1:
                 logger.info(f"[OK] Arb confermato! https://basescan.org/tx/{tx_hash.hex()}")
                 if TELEGRAM_OK:
-                    try: send_message("💰 <b>ARB ESEGUITO!</b> " + opp.pair + "\nProfit: " + str(round(opp.estimated_profit,4)) + " USDC\n🔗 https://basescan.org/tx/" + tx_hash.hex())
-                    except Exception: pass
+                    send_message("💰 <b>ARB ESEGUITO!</b> " + opp.pair + "\nProfit: " + str(round(opp.estimated_profit,4)) + " USDC\n🔗 https://basescan.org/tx/" + tx_hash.hex())
                 return tx_hash.hex()
             else:
                 logger.error(f"[ERR] Arb revertito (non profittevole in quel blocco): {tx_hash.hex()}")
